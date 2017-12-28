@@ -1,9 +1,6 @@
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 
-project(gtest-demo)
-
-enable_language(C)
-enable_language(CXX)
+project(chess C CXX)
 
 if(CMAKE_CXX_COMPILER_ID MATCHES GNU)
     set(CMAKE_CXX_FLAGS         "-Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused")
@@ -17,7 +14,7 @@ include_directories(
     )
 
 add_library(
-    board
+   	chess 
     src/board.cpp
     )
 
@@ -50,7 +47,7 @@ add_dependencies(unit_tests googletest)
 target_link_libraries(
     unit_tests
     googletest
-    board
+   	chess 
     pthread
     )
 
