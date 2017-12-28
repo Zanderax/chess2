@@ -12,6 +12,7 @@ public:
 		return pieces[i];
 	}
 private:
+	void SetPieces(char newPieces[RANKS][FILES]);
 	char pieces[RANKS][FILES];
 };
 

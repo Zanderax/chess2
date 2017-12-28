@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 project(chess C CXX)
 
 if(CMAKE_CXX_COMPILER_ID MATCHES GNU)
-    set(CMAKE_CXX_FLAGS         "-Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused")
+    set(CMAKE_CXX_FLAGS         "-Wall -Wno-unknown-pragmas -Wno-sign-compare -Woverloaded-virtual -Wwrite-strings -Wno-unused -std=c++11")
     set(CMAKE_CXX_FLAGS_DEBUG   "-O0 -g3")
     set(CMAKE_CXX_FLAGS_RELEASE "-O3")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
@@ -37,16 +37,16 @@ endforeach()
 add_library(googletest ${GOOGLETEST_SOURCES})
 
 add_executable(
-    unit_tests
+    run_tests
     test/main.cpp
     test/board.cpp
     )
 
-add_dependencies(unit_tests googletest)
+add_dependencies(run_tests googletest)
 
 target_link_libraries(
-    unit_tests
-    googletest
+    run_tests
+		googletest
    	chess 
     pthread
     )
@@ -54,4 +54,4 @@ target_link_libraries(
 include(CTest)
 enable_testing()
 
-add_test(unit ${PROJECT_BINARY_DIR}/unit_tests)
+add_test(unit ${PROJECT_BINARY_DIR}/run_tests)
